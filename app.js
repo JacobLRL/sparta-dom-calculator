@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let items = document.getElementsByClassName("item");
     let screen = document.getElementById("screen");
     let button = document.getElementById("button");
-    console.log(items);
+    // main function
     function inputNum() {
         for (let i = 0; i < items.length; i++) {
             items[i].addEventListener('click', function (e) {
@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (e.target.classList.contains("sqrt")) {
                         isSqrt = true;
                         number2Set = true;
-                        //enter();
                     }
                     screen.innerText = number1 + operator;
                     operatorSet = true;
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
-
+    // clears up all but num1 and num1set because it is the common calls needed
     function clearUp() {
         number2 = "";
         operatorSet = false;
@@ -46,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         operator = "";
         isSqrt = false;
     }
-
+    // adds listener to enter button only when requirements are met
     function enter() {
         button.addEventListener('click', function (e) {
             if (number1Set == true && operatorSet == true && number2Set == true) {
@@ -55,15 +54,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     clearUp();
                     number1 = Math.pow(parseInt(number1), 0.5);
                 }
-            }
-            else {
+            } else {
                 screen.innerText = eval(number1 + operator + number2);
                 number1 = (eval(number1 + operator + number2)).toString();
                 clearUp();
             }
         });
     }
-
+    // calls functions for adding listeners
     inputNum();
     enter();
 }); //end of dom
